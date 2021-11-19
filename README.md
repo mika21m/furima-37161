@@ -17,7 +17,8 @@
 
 - has_many :items, dependent: :destroy
 - has_many :comments, dependent: :destroy
-- has_many :purchase_record
+- has_many :purchase_records
+- has_one :card
 
 ## items テーブル
 
@@ -49,24 +50,24 @@
 | address                  | string     | null: false                   |
 | building_name            | string     |                               |
 | phone_number             | integer    | null: false                   |
+| purchase_record          | references | null: false,foreign_key: true |
 
 ### Association
 
 - belongs_to :purchase_record
-- has_one :card
 
-## purchase_record テーブル
+## purchase_records テーブル
 
 | Column                   | Type       | Options                       |
 | ------------------------ | ---------- | ----------------------------- |
 | user                     | references | null: false,foreign_key: true |
 | item                     | references | null: false,foreign_key: true |
-| destination              | references | null: false,foreign_key: true |
 
 ### Association
 
 - has_one :destination
 - belongs_to :item
+- belongs_to :user
 
 ## commentsテーブル
 
@@ -85,10 +86,10 @@
 
 | Column                   | Type       | Options                       |
 | ------------------------ | ---------- | ----------------------------- |
-| card_id                  | string     | null: false                   |
+| card_token               | string     | null: false                   |
 | user_id                  | integer    | null: false                   |
-| customer_id              | string     | null: false                   |
+| customer_token           | string     | null: false                   |
 
 ### Association
 
-- belongs_to :destination
+- belongs_to :user
