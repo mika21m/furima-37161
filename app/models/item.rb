@@ -8,11 +8,13 @@ class Item < ApplicationRecord
   validates :shipping_day_id, numericality: { other_than: 1 , message: "can't be blank" }
   validates :price, presence: true, format: { with: /\A[0-9]+\z/ }, numericality: { only_integer: true, greater_than_or_equal_to: 300, less_than_or_equal_to: 9999999}
 
-  belongs_to :user
-  belongs_to :category
-  belongs_to :status
-  belongs_to :shipping_cost
-  belongs_to :shipping_prefecture
-  belongs_to :shipping_day
   has_one_attached :image
+  belongs_to :user
+
+  extend ActiveHash::Associations::ActiveRecordExtensions
+  belongs_to_active_hash :category
+  belongs_to_active_hash :status
+  belongs_to_active_hash :shipping_cost
+  belongs_to_active_hash :shipping_prefecture
+  belongs_to_active_hash :shipping_day
 end
