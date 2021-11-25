@@ -10,7 +10,7 @@ class ItemsController < ApplicationController
   end
 
   def create
-    @item = Item.new(item_params) 
+    @item = Item.new(item_params)
     if @item.save
       redirect_to root_path
     else
@@ -45,9 +45,6 @@ class ItemsController < ApplicationController
 
   def move_to_index
     @item = Item.find(params[:id])
-    unless current_user.id == @item.user_id
-      redirect_to action: :index
-    end
+    redirect_to action: :index unless current_user.id == @item.user_id
   end
-
 end
