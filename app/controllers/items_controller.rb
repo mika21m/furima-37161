@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   def index
-    @items = Item.all.order("created_at DESC")
+    @items = Item.all.order('created_at DESC')
   end
 
   def new
@@ -9,7 +9,7 @@ class ItemsController < ApplicationController
 
   def create
     @item = Item.new(item_params)
-    #create = new + save
+    # create = new + save
     if @item.save
       redirect_to root_path
     else
@@ -17,8 +17,10 @@ class ItemsController < ApplicationController
     end
   end
 
-  private 
+  private
+
   def item_params
-    params.require(:item).permit(:name, :image, :description, :category_id, :status_id, :shipping_cost_id, :shipping_prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
+    params.require(:item).permit(:name, :image, :description, :category_id, :status_id, :shipping_cost_id,
+                                 :shipping_prefecture_id, :shipping_day_id, :price).merge(user_id: current_user.id)
   end
 end
