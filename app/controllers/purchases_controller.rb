@@ -4,13 +4,13 @@ class PurchasesController < ApplicationController
 
   def index
     if user_signed_in? && current_user.id != @item.user_id
-      if@item.purchase_record.present?
+      if @item.purchase_record.present?
         redirect_to root_path
+      else
+        @purchase_destination = PurchaseDestination.new
       end
-    elsif user_signed_in? && current_user.id == @item.user_id
+    else user_signed_in? && current_user.id == @item.user_id
       redirect_to root_path
-    else
-      @purchase_destination = PurchaseDestination.new
     end
   end
 
