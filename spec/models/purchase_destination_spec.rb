@@ -5,9 +5,9 @@ RSpec.describe PurchaseDestination, type: :model do
     user = FactoryBot.create(:user)
     item = FactoryBot.create(:item)
     @purchase_destination = FactoryBot.build(:purchase_destination, user_id: user.id, item_id: item.id)
-    sleep 0.1 
+    sleep 0.1
   end
-  
+
   describe '商品購入' do
     context '商品購入がうまくいく時' do
       it '全ての値が正しく入力されていれば購入できること' do
@@ -36,7 +36,7 @@ RSpec.describe PurchaseDestination, type: :model do
       it 'postal_codeにハイフンがないと購入できない' do
         @purchase_destination.postal_code = '1234567'
         @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@purchase_destination.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
 
       it 'prefecture_idが空だと購入できない' do
@@ -66,31 +66,31 @@ RSpec.describe PurchaseDestination, type: :model do
       it 'phone_numberが9桁以下では購入できない' do
         @purchase_destination.phone_number = '123456789'
         @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが12桁以下では購入できない' do
         @purchase_destination.phone_number = '012345678912'
         @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが全角数値では購入できない' do
         @purchase_destination.phone_number = '０１２３４５６７８９'
         @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが全角文字では購入できない' do
         @purchase_destination.phone_number = 'ああああああああああ'
         @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'phone_numberが半角文字では購入できない' do
         @purchase_destination.phone_number = 'ｱｱｱｱｱｱｱｱｱｱ'
         @purchase_destination.valid?
-        expect(@purchase_destination.errors.full_messages).to include("Phone number is invalid")
+        expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
       end
 
       it 'userが紐づいていなければ出品できない' do
@@ -104,7 +104,6 @@ RSpec.describe PurchaseDestination, type: :model do
         @purchase_destination.valid?
         expect(@purchase_destination.errors.full_messages).to include("Item can't be blank")
       end
-
     end
   end
 end
