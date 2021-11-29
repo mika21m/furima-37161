@@ -57,6 +57,12 @@ RSpec.describe PurchaseDestination, type: :model do
         expect(@purchase_destination.errors.full_messages).to include("City can't be blank")
       end
 
+      it 'addressが空だと購入できない' do
+        @purchase_destination.address = ''
+        @purchase_destination.valid?
+        expect(@purchase_destination.errors.full_messages).to include("Address can't be blank")
+      end
+
       it 'phone_numberが空だと購入できない' do
         @purchase_destination.phone_number = ''
         @purchase_destination.valid?
@@ -69,7 +75,7 @@ RSpec.describe PurchaseDestination, type: :model do
         expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
       end
 
-      it 'phone_numberが12桁以下では購入できない' do
+      it 'phone_numberが12桁以上では購入できない' do
         @purchase_destination.phone_number = '012345678912'
         @purchase_destination.valid?
         expect(@purchase_destination.errors.full_messages).to include('Phone number is invalid')
