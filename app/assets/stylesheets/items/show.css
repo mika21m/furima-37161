@@ -163,7 +163,7 @@
   text-align: left;
 }
 
-.comment-btn {
+.comment-submit {
   line-height: 48px;
   background-color: #3CCACE;
   border: 1px solid #3CCACE;
@@ -173,15 +173,6 @@
   font-size: 18px;
   border-radius: 100px;
   margin-bottom: 2vh;
-}
-
-.comment-flag {
-  display: flex;
-  justify-content: center;
-}
-
-.comment-flag-icon {
-  margin: 10px 5px 0 0;
 }
 
 .links {
@@ -204,4 +195,23 @@
   text-decoration: none;
   font-weight: bold;
   font-size: 23px;
+}
+
+.comment-list {
+  margin: 10px 0;
+  color: #3CCACE;
+
+}
+.comment {
+  display: flex;
+  justify-content: center;
+}
+
+.comment p {
+   margin: 10px 0;
+}
+
+.user-info {
+  color: gray;
+  font-weight: bold;
 }
